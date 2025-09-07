@@ -173,6 +173,28 @@ Creative writing specialist for storytelling and narrative craft.
 
 ## 🔧 Tools
 
+### Agent Generator (`new_agent.py`)
+*"The old create-a-new-agent-from-scratch trick. Works every time!"*
+
+Creates a new agent directory with template files and proper structure.
+
+```bash
+# Create a basic agent
+python tools/new_agent.py "My Custom Agent"
+
+# Create with description
+python tools/new_agent.py "Data Analyst" --description "Expert in data analysis and visualization"
+
+# Specify custom agents directory
+python tools/new_agent.py "Marketing Assistant" --agents-dir custom-agents
+```
+
+**What it creates:**
+- Agent directory: `agents/agent-name/`
+- Main agent file: `agent-name.yaml`
+- Documentation: `README.md`
+- Proper schema compliance and validation-ready
+
 ### Agent Converter (`convert_agent.py`)
 Converts generic agent definitions to platform-specific formats.
 
