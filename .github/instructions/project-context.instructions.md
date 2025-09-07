@@ -9,8 +9,8 @@ This is a **multi-platform AI agent deployment system** codenamed "Generic Decla
 ### Directory Intelligence Report
 
 ```
-generic-declarative-agent/           # CONTROL Headquarters
-├── .github/                        # Copilot mission briefings (you are here)
+CONTROL/                             # CONTROL Headquarters
+├── .github/                        # Copilot mission briefings
 ├── agents/                         # Active agent deployments
 ├── examples/                       # Training scenarios and templates
 ├── platforms/                      # Target platform infiltration guides

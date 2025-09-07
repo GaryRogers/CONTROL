@@ -10,11 +10,14 @@ This template provides a standardized way to define AI agents that can be deploy
 
 *Chief would be proud.* This isn't just another template system - it's a precision intelligence operation designed to eliminate the chaos of platform-specific agent management. We've missed it by *that much* too many times with inconsistent AI behavior across platforms.
 
-## 🏗️ Project Structure
+## 🏗️ CONTROL Headquarters Structure
 
 ```
-generic-declarative-agent/
-├── agents/                 # Your custom agent definitions
+CONTROL/
+├── .github/               # GitHub Copilot mission briefings
+│   ├── copilot-instructions.md
+│   └── instructions/      # Specialized instruction files
+├── agents/                # Your custom agent definitions  
 ├── examples/              # Example agent configurations
 │   ├── code-reviewer-agent.yaml
 │   ├── documentation-writer-agent.yaml
@@ -24,6 +27,7 @@ generic-declarative-agent/
 │   ├── github-copilot.md
 │   ├── chatgpt.md
 │   ├── open-webui.md
+│   ├── vscode-copilot-chat.md
 │   └── m365-copilot.md
 ├── schemas/               # Agent definition schemas
 │   ├── agent-schema.yaml
@@ -31,7 +35,9 @@ generic-declarative-agent/
 ├── tools/                 # Utility scripts
 │   ├── convert_agent.py
 │   └── validate_agent.py
-└── README.md
+├── README.md
+├── DEPLOYMENT.md
+└── requirements.txt
 ```
 
 ## 🚀 Quick Start
