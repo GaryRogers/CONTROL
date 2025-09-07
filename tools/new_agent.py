@@ -89,6 +89,13 @@ Always strive to be helpful while staying within appropriate boundaries.""",
                         f"How can {name} help you today?",
                         "What would you like assistance with?"
                     ]
+                },
+                "claude_projects": {
+                    "enabled": True,
+                    "custom_instructions": "Leverage Claude's analytical and reasoning capabilities",
+                    "project_description": f"{name} specialized assistant",
+                    "conversation_style": "professional",
+                    "knowledge_files": []
                 }
             },
             "capabilities": {
@@ -186,6 +193,9 @@ python ../tools/convert_agent.py {dir_name}.yaml --platform github-copilot
 
 # Convert for ChatGPT
 python ../tools/convert_agent.py {dir_name}.yaml --platform chatgpt
+
+# Convert for Claude Projects
+python ../tools/convert_agent.py {dir_name}.yaml --platform claude-projects
 
 # Convert for Open WebUI
 python ../tools/convert_agent.py {dir_name}.yaml --platform open-webui --output config.json

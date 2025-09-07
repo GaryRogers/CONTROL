@@ -205,10 +205,71 @@ def convert_to_vscode_copilot(agent_config: Dict[str, Any]) -> str:
     
     return instructions
 
+def convert_to_claude_projects(agent_config: Dict[str, Any]) -> Dict[str, Any]:
+    """Convert agent config to Claude Projects format."""
+    agent = agent_config['agent']
+    metadata = agent['metadata']
+    core = agent['core']
+    platform_config = agent.get('platforms', {}).get('claude_projects', {})
+    
+    # Build main instructions (similar to ChatGPT but single field)
+    instructions = f"You are {metadata['name']}, {metadata['description']}\n\n"
+    
+    # Add core system prompt
+    instructions += f"ROLE AND INSTRUCTIONS:\n{core['system_prompt']}\n\n"
+    
+    # Add personality if specified
+    if 'personality' in core:
+        instructions += f"COMMUNICATION STYLE: {core['personality']}\n\n"
+    
+    # Add expertise areas
+    if 'expertise' in core:
+        instructions += "AREAS OF EXPERTISE:\n"
+        for item in core['expertise']:
+            instructions += f"• {item}\n"
+        instructions += "\n"
+    
+    # Add constraints
+    if 'constraints' in core:
+        instructions += "IMPORTANT CONSTRAINTS:\n"
+        for constraint in core['constraints']:
+            instructions += f"• {constraint}\n"
+        instructions += "\n"
+    
+    # Add output format if specified
+    if 'output_format' in core:
+        instructions += f"PREFERRED OUTPUT FORMAT:\n{core['output_format']}\n\n"
+    
+    # Add platform-specific customizations
+    if platform_config.get('custom_instructions'):
+        instructions += f"CLAUDE-SPECIFIC GUIDANCE:\n{platform_config['custom_instructions']}\n\n"
+    
+    # Trim to Claude's character limit (~2000 chars)
+    if len(instructions) > 2000:
+        instructions = instructions[:1900] + "...\n\n[Instructions truncated due to length limits]"
+    
+    # Build Claude Projects configuration
+    claude_config = {
+        "project_name": metadata['name'],
+        "project_description": platform_config.get('project_description', metadata['description']),
+        "custom_instructions": instructions,
+        "conversation_style": platform_config.get('conversation_style', "professional"),
+        "knowledge_files": platform_config.get('knowledge_files', []),
+        "metadata": {
+            "version": metadata['version'],
+            "author": metadata.get('author', ''),
+            "tags": metadata.get('tags', []),
+            "created_date": metadata.get('created_date'),
+            "updated_date": metadata.get('updated_date')
+        }
+    }
+    
+    return claude_config
+
 def main():
     parser = argparse.ArgumentParser(description='Convert generic agent configs to platform-specific formats')
     parser.add_argument('input_file', help='Input agent configuration file (YAML or JSON)')
-    parser.add_argument('--platform', choices=['github-copilot', 'chatgpt', 'open-webui', 'vscode-copilot', 'm365-copilot'], 
+    parser.add_argument('--platform', choices=['github-copilot', 'chatgpt', 'claude-projects', 'open-webui', 'vscode-copilot', 'm365-copilot'], 
                        required=True, help='Target platform')
     parser.add_argument('--output', help='Output file (optional)')
     
@@ -224,6 +285,9 @@ def main():
         elif args.platform == 'chatgpt':
             field1, field2 = convert_to_chatgpt(agent_config)
             result = f"FIELD 1 (About You):\n{field1}\n\nFIELD 2 (Response Style):\n{field2}"
+            
+        elif args.platform == 'claude-projects':
+            result = json.dumps(convert_to_claude_projects(agent_config), indent=2)
             
         elif args.platform == 'open-webui':
             result = json.dumps(convert_to_open_webui(agent_config), indent=2)

@@ -3,7 +3,7 @@
 *"Listen carefully, Copilot. This is a CONTROL operation."*
 
 ## Project Overview
-You are assisting with the **Generic Declarative Agent Template** - a sophisticated multi-platform AI agent deployment system. This project allows users to define AI agents once and deploy them across GitHub Copilot, ChatGPT, Open WebUI, VS Code Copilot Chat, and M365 Copilot.
+You are assisting with the **Generic Declarative Agent Template** - a sophisticated multi-platform AI agent deployment system. This project allows users to define AI agents once and deploy them across GitHub Copilot, ChatGPT, Claude Projects, Open WebUI, VS Code Copilot Chat, and M365 Copilot.
 
 ## Core Responsibilities
 
@@ -25,6 +25,7 @@ When helping create new agents:
 Help optimize agents for different platforms:
 - **GitHub Copilot**: ~2000 character limit, file pattern activation
 - **ChatGPT**: ~1500 characters per field, two-field structure
+- **Claude Projects**: ~2000 characters, knowledge file integration
 - **Open WebUI**: No strict limits, can include custom tools
 - **VS Code Copilot Chat**: ~2000 characters, workspace awareness
 - **M365 Copilot**: Conversation starters, M365 capabilities

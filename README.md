@@ -4,13 +4,28 @@
 
 A sophisticated intelligence operation for deploying AI agents across GitHub Copilot, ChatGPT, Open WebUI, and VS Code Copilot Chat. Because when it comes to AI consistency, we don't mess around.
 
-## 🎯 Mission Overview
+## Mission Overview
 
 This template provides a standardized way to define AI agents that can be deployed across different platforms while maintaining consistency in behavior, expertise, and response quality. Instead of maintaining separate agent definitions for each platform, you define once and deploy everywhere.
 
 *Chief would be proud.* This isn't just another template system - it's a precision intelligence operation designed to eliminate the chaos of platform-specific agent management. We've missed it by *that much* too many times with inconsistent AI behavior across platforms.
 
-## 🏗️ CONTROL Headquarters Structure
+## Platform Intelligence Report
+
+*"Know your targets, Agent 86. Each platform has its own... personality."*
+
+| Platform                 | Character Limit    | Context Awareness  | Key Features                         | Best Use Cases                |
+|--------------------------|--------------------|--------------------|--------------------------------------|-------------------------------|
+| **[GitHub Copilot](https://github.com/features/copilot)**       | ~2,000 chars       | Full workspace     | File patterns, inline suggestions    | Development, code assistance  |
+| **[ChatGPT](https://chat.openai.com/)**              | ~1,500 chars/field | Conversation only  | Persistent instructions, custom GPTs | General purpose, conversation |
+| **[Claude Projects](https://claude.ai/)**      | ~2,000 chars       | Project-based      | Knowledge files, long context        | Research, analysis, writing   |
+| **[Open WebUI](https://openwebui.com/)**           | No strict limit    | Configurable       | Custom tools, RAG, self-hosted       | Advanced workflows, privacy   |
+| **[VS Code Copilot Chat](https://code.visualstudio.com/docs/copilot/copilot-chat)** | ~2,000 chars       | Full workspace     | Code execution, terminal access      | Development, debugging        |
+| **[M365 Copilot](https://www.microsoft.com/en-us/microsoft-365/copilot)**         | 8000 chars         | Enterprise context | Office integration, Graph data       | Business productivity         |
+
+*Choose your platform wisely - each has strengths that even KAOS would envy.*
+
+## CONTROL Headquarters Structure
 
 ```
 CONTROL/
@@ -26,6 +41,7 @@ CONTROL/
 ├── platforms/             # Platform-specific documentation
 │   ├── github-copilot.md
 │   ├── chatgpt.md
+│   ├── claude-projects.md
 │   ├── open-webui.md
 │   ├── vscode-copilot-chat.md
 │   └── m365-copilot.md
@@ -40,7 +56,7 @@ CONTROL/
 └── requirements.txt
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 *"Sorry about that, Chief. Let me try again..."*
 
@@ -99,31 +115,37 @@ python tools/validate_agent.py agents/my-custom-agent.yaml --check-compatibility
 
 ### 3. Deploy to Platforms (Operation: Multi-Platform Infiltration)
 
-#### GitHub Copilot
+#### [GitHub Copilot](https://github.com/features/copilot)
 ```bash
 python tools/convert_agent.py agents/my-custom-agent.yaml --platform github-copilot
 ```
-Copy the output to your GitHub Copilot Chat instructions in VS Code settings.
+Copy the output to your [GitHub Copilot Chat instructions in VS Code settings](https://code.visualstudio.com/docs/copilot/copilot-chat#_chat-context).
 
-#### ChatGPT
+#### [ChatGPT](https://chat.openai.com/)
 ```bash
 python tools/convert_agent.py agents/my-custom-agent.yaml --platform chatgpt
 ```
-Copy Field 1 and Field 2 to your ChatGPT custom instructions.
+Copy Field 1 and Field 2 to your [ChatGPT custom instructions](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt).
 
-#### Open WebUI
+#### [Claude Projects](https://claude.ai/)
+```bash
+python tools/convert_agent.py agents/my-custom-agent.yaml --platform claude-projects
+```
+Create a new [Claude Project](https://claude.ai/) and paste the custom instructions.
+
+#### [Open WebUI](https://openwebui.com/)
 ```bash
 python tools/convert_agent.py agents/my-custom-agent.yaml --platform open-webui --output openwebui-config.json
 ```
-Import the JSON configuration into your Open WebUI workspace.
+Import the JSON configuration into your [Open WebUI](https://openwebui.com/) workspace.
 
-#### VS Code Copilot Chat
+#### [VS Code Copilot Chat](https://code.visualstudio.com/docs/copilot/copilot-chat)
 ```bash
 python tools/convert_agent.py agents/my-custom-agent.yaml --platform m365-copilot
 ```
-Add the output to your VS Code Copilot Chat instructions setting.
+Add the output to your [VS Code Copilot Chat instructions setting](https://code.visualstudio.com/docs/copilot/copilot-chat#_chat-context).
 
-## 📋 Agent Schema Reference
+## Agent Schema Reference
 
 ### Required Fields
 
@@ -145,7 +167,7 @@ Add the output to your VS Code Copilot Chat instructions setting.
 - **examples**: Input/output examples
 - **safety**: Safety and privacy guidelines
 
-## 🎨 Example Agents
+## Example Agents
 
 ### Code Reviewer
 Specializes in reviewing code for quality, security, and best practices.
@@ -171,7 +193,7 @@ Creative writing specialist for storytelling and narrative craft.
 - **Use Cases**: Novel writing, character development, plot structure
 - **Platforms**: All platforms supported
 
-## 🔧 Tools
+## Tools
 
 ### Agent Generator (`new_agent.py`)
 *"The old create-a-new-agent-from-scratch trick. Works every time!"*
@@ -223,33 +245,33 @@ python tools/validate_agent.py agents/my-agent.yaml --check-compatibility --anal
 python tools/validate_agent.py agents/my-agent.yaml --strict
 ```
 
-## 📚 Platform-Specific Guides
+## Platform-Specific Guides
 
-### GitHub Copilot
+### [GitHub Copilot](https://github.com/features/copilot)
 - **Character Limit**: ~2000 characters
 - **Context**: Automatic file and workspace context
 - **Features**: Inline suggestions, chat integration
-- **Setup**: VS Code Settings → GitHub Copilot Chat Instructions
+- **Setup**: [VS Code Settings → GitHub Copilot Chat Instructions](https://code.visualstudio.com/docs/copilot/copilot-chat#_chat-context)
 
-### ChatGPT
+### [ChatGPT](https://chat.openai.com/)
 - **Character Limit**: ~1500 characters per field
 - **Context**: No automatic workspace context
 - **Features**: Persistent instructions, custom GPTs
-- **Setup**: Settings → Personalization → Custom Instructions
+- **Setup**: [Settings → Personalization → Custom Instructions](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt)
 
-### Open WebUI
+### [Open WebUI](https://openwebui.com/)
 - **Character Limit**: No strict limit
 - **Context**: Configurable workspace access
 - **Features**: Custom tools, model selection, RAG
 - **Setup**: Workspace configuration or admin panel
 
-### VS Code Copilot Chat
+### [VS Code Copilot Chat](https://code.visualstudio.com/docs/copilot/copilot-chat)
 - **Character Limit**: ~2000 characters
 - **Context**: Full workspace awareness
 - **Features**: File integration, terminal access
-- **Setup**: VS Code Settings → GitHub Copilot Chat Instructions
+- **Setup**: [VS Code Settings → GitHub Copilot Chat Instructions](https://code.visualstudio.com/docs/copilot/copilot-chat#_chat-context)
 
-## 💡 Best Practices
+## Best Practices
 
 *"Listen carefully, Agent 86..."*
 
@@ -274,7 +296,7 @@ python tools/validate_agent.py agents/my-agent.yaml --strict
 4. **Regular Updates**: Keep agents current with evolving needs
 5. **Backup Configs**: Maintain copies of working configurations *(you never know when KAOS might strike)*
 
-## 🔒 Security and Privacy
+## Security and Privacy
 
 *"This information is classified. Top secret. For your eyes only."*
 
@@ -290,7 +312,7 @@ python tools/validate_agent.py agents/my-agent.yaml --strict
 - Be transparent about agent capabilities and limitations *(no shoe phones necessary)*
 - Respect user data and workspace confidentiality
 
-## 🤝 Contributing
+## Contributing
 
 ### Adding New Platforms
 1. Create platform documentation in `platforms/`
@@ -313,11 +335,11 @@ python tools/validate_agent.py agents/my-agent.yaml --strict
 4. Add automated testing
 5. Enhance documentation
 
-## 📄 License
+## License
 
 [Choose appropriate license - MIT, Apache 2.0, etc.]
 
-## 🙋‍♂️ Support
+## Support
 
 - **Issues**: Report problems via GitHub issues
 - **Discussions**: Join community discussions

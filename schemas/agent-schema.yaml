@@ -49,6 +49,13 @@ agent:
       capabilities: [string]           # M365 capabilities (web_search, graph_connectors)
       actions: [string]                # Custom actions/functions
       
+    claude_projects:
+      enabled: boolean
+      custom_instructions: string      # Main project instructions
+      project_description: string     # Brief project context
+      knowledge_files: [string]       # Optional: list of knowledge files to reference
+      conversation_style: string      # Optional: formal/casual/technical
+      
   # Capabilities and Tools
   capabilities:
     can_read_files: boolean

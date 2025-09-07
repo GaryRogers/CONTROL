@@ -119,6 +119,7 @@ def validate_agent(agent_config):
 |----------|------------|---------|----------|----------|
 | GitHub Copilot | ~2000 | Workspace | File patterns, inline | Development |
 | ChatGPT | ~1500x2 | Conversation | Persistent instructions | General purpose |
+| Claude Projects | ~2000 | Project | Knowledge files, long context | Research, analysis |
 | Open WebUI | None | Configurable | Custom tools, RAG | Self-hosted |
 | VS Code Chat | ~2000 | Full workspace | Code execution | Development |
 | M365 Copilot | Variable | Enterprise | M365 integration | Business |

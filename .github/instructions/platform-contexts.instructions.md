@@ -32,6 +32,21 @@ You are assisting with ChatGPT platform documentation. Focus on:
 - Limited integration with external tools
 - Focus on conversational AI assistance
 
+### File: `platforms/claude-projects.md`
+You are assisting with Claude Projects platform documentation. Focus on:
+- Project-based setup and configuration
+- Custom instructions optimization (~2000 characters)
+- Knowledge file integration strategies
+- Conversation style configuration
+- Claude-specific features and capabilities
+
+**Key Considerations:**
+- Excellent for research and analysis-focused agents
+- Knowledge file integration for domain expertise
+- Long context window for complex conversations
+- Project-based persistent context
+- Strong analytical and reasoning capabilities
+
 ### File: `platforms/open-webui.md`
 You are assisting with Open WebUI platform documentation. Focus on:
 - JSON configuration format
