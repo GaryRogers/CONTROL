@@ -1,0 +1,68 @@
+# Generic Declarative Agent Schema
+# This schema defines the structure for creating platform-agnostic agents
+
+agent:
+  # Core Metadata
+  metadata:
+    name: string                    # Agent name (e.g., "Code Reviewer")
+    version: string                 # Version (e.g., "1.0.0")
+    description: string             # Brief description of agent purpose
+    author: string                  # Creator name/organization
+    tags: [string]                  # Tags for categorization
+    created_date: string            # ISO 8601 date
+    updated_date: string            # ISO 8601 date
+    
+  # Core Instructions
+  core:
+    system_prompt: string           # Primary system prompt/instructions
+    personality: string             # Agent personality/tone (optional)
+    expertise: [string]             # Areas of expertise
+    constraints: [string]           # What the agent should NOT do
+    output_format: string           # Preferred response format
+    
+  # Platform-specific configurations
+  platforms:
+    github_copilot:
+      enabled: boolean
+      custom_instructions: string   # Platform-specific additions
+      file_patterns: [string]       # File types to activate on
+      
+    chatgpt:
+      enabled: boolean
+      custom_instructions: string
+      model_preferences: string     # Preferred model if applicable
+      
+    open_webui:
+      enabled: boolean
+      custom_instructions: string
+      tools: [string]               # Available tools/functions
+      
+    copilot_chat:
+      enabled: boolean
+      custom_instructions: string
+      slash_commands: [string]      # Custom slash commands
+      
+  # Capabilities and Tools
+  capabilities:
+    can_read_files: boolean
+    can_write_files: boolean
+    can_execute_code: boolean
+    can_browse_web: boolean
+    can_use_tools: [string]         # List of tool names
+    
+  # Context and Examples
+  context:
+    knowledge_cutoff: string        # Date of knowledge cutoff
+    domain_knowledge: [string]      # Specific domains/technologies
+    use_cases: [string]             # Common use cases
+    
+  examples:
+    - input: string
+      output: string
+      explanation: string
+      
+  # Quality and Safety
+  safety:
+    content_policy: string          # Content filtering rules
+    bias_mitigation: string         # Bias awareness instructions
+    privacy_considerations: string  # Privacy handling guidelines

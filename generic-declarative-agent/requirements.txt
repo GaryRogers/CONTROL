@@ -1,0 +1,10 @@
+# Requirements for Generic Agent Tools
+
+# Python dependencies for the agent conversion and validation tools
+PyYAML>=6.0
+jsonschema>=4.0.0
+
+# Optional dependencies for enhanced functionality
+click>=8.0.0        # For better CLI interfaces
+pydantic>=2.0.0     # For advanced validation
+rich>=13.0.0        # For colored terminal output

@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generic Declarative Agent",
+  "type": "object",
+  "required": ["agent"],
+  "properties": {
+    "agent": {
+      "type": "object",
+      "required": ["metadata", "core"],
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "required": ["name", "version", "description"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "description": { "type": "string", "minLength": 1 },
+            "author": { "type": "string" },
+            "tags": { "type": "array", "items": { "type": "string" } },
+            "created_date": { "type": "string", "format": "date-time" },
+            "updated_date": { "type": "string", "format": "date-time" }
+          }
+        },
+        "core": {
+          "type": "object",
+          "required": ["system_prompt"],
+          "properties": {
+            "system_prompt": { "type": "string", "minLength": 1 },
+            "personality": { "type": "string" },
+            "expertise": { "type": "array", "items": { "type": "string" } },
+            "constraints": { "type": "array", "items": { "type": "string" } },
+            "output_format": { "type": "string" }
+          }
+        },
+        "platforms": {
+          "type": "object",
+          "properties": {
+            "github_copilot": {
+              "$ref": "#/definitions/platformConfig"
+            },
+            "chatgpt": {
+              "allOf": [
+                { "$ref": "#/definitions/platformConfig" },
+                {
+                  "properties": {
+                    "model_preferences": { "type": "string" }
+                  }
+                }
+              ]
+            },
+            "open_webui": {
+              "allOf": [
+                { "$ref": "#/definitions/platformConfig" },
+                {
+                  "properties": {
+                    "tools": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              ]
+            },
+            "copilot_chat": {
+              "allOf": [
+                { "$ref": "#/definitions/platformConfig" },
+                {
+                  "properties": {
+                    "slash_commands": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "properties": {
+            "can_read_files": { "type": "boolean" },
+            "can_write_files": { "type": "boolean" },
+            "can_execute_code": { "type": "boolean" },
+            "can_browse_web": { "type": "boolean" },
+            "can_use_tools": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "knowledge_cutoff": { "type": "string" },
+            "domain_knowledge": { "type": "array", "items": { "type": "string" } },
+            "use_cases": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["input", "output"],
+            "properties": {
+              "input": { "type": "string" },
+              "output": { "type": "string" },
+              "explanation": { "type": "string" }
+            }
+          }
+        },
+        "safety": {
+          "type": "object",
+          "properties": {
+            "content_policy": { "type": "string" },
+            "bias_mitigation": { "type": "string" },
+            "privacy_considerations": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "platformConfig": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "custom_instructions": { "type": "string" },
+        "file_patterns": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
