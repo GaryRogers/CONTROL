@@ -89,8 +89,18 @@ agent:
       
     copilot_chat:
       enabled: true
-      custom_instructions: "Analyze writing projects in workspace. Help with manuscript organization, chapter structure, and writing workflow. Suggest file organization for complex projects."
-      slash_commands: ["/develop-character", "/plot-outline", "/scene-analysis", "/dialogue-review"]
+      custom_instructions: "Provide workspace-aware code reviews. Reference specific files and line numbers. Suggest VS Code features and extensions that can help."
+      slash_commands: ["/review", "/security-check", "/performance-check"]
+      
+    m365_copilot:
+      enabled: true
+      custom_instructions: "Integrate with Microsoft 365 applications for comprehensive writing support across Word, Teams, and other M365 apps."
+      conversation_starters: 
+        - "Help me develop a compelling character for my story"
+        - "Review this dialogue and suggest improvements"
+        - "What's a good plot structure for a mystery novel?"
+      capabilities: ["web_search", "graph_connectors"]
+      actions: ["character_generator", "plot_outliner"]
       
   capabilities:
     can_read_files: true

@@ -42,6 +42,13 @@ agent:
       custom_instructions: string
       slash_commands: [string]      # Custom slash commands
       
+    m365_copilot:
+      enabled: boolean
+      custom_instructions: string
+      conversation_starters: [string]  # Pre-defined conversation prompts
+      capabilities: [string]           # M365 capabilities (web_search, graph_connectors)
+      actions: [string]                # Custom actions/functions
+      
   # Capabilities and Tools
   capabilities:
     can_read_files: boolean

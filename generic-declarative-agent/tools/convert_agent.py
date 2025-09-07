@@ -113,6 +113,62 @@ def convert_to_open_webui(agent_config: Dict[str, Any]) -> Dict[str, Any]:
         }
     }
 
+def convert_to_m365_copilot(agent_config: Dict[str, Any]) -> Dict[str, Any]:
+    """Convert agent config to Microsoft 365 Copilot declarative agent format."""
+    agent = agent_config['agent']
+    metadata = agent['metadata']
+    core = agent['core']
+    platform_config = agent.get('platforms', {}).get('m365_copilot', {})
+    capabilities = agent.get('capabilities', {})
+    
+    # Generate conversation starters from examples or create defaults
+    conversation_starters = []
+    if 'examples' in agent and agent['examples']:
+        for example in agent['examples'][:3]:  # Max 3 starters
+            conversation_starters.append({"text": example['input']})
+    
+    # Add custom conversation starters if provided
+    if platform_config.get('conversation_starters'):
+        for starter in platform_config['conversation_starters'][:3]:
+            conversation_starters.append({"text": starter})
+    
+    # Default starters if none provided
+    if not conversation_starters:
+        conversation_starters = [
+            {"text": f"How can you help me with {metadata['description'].lower()}?"},
+            {"text": "What are your main capabilities?"},
+            {"text": "Can you provide an example of how you work?"}
+        ]
+    
+    declarative_agent = {
+        "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.0/schema.json",
+        "version": "v1.0",
+        "name": metadata['name'],
+        "description": metadata['description'],
+        "instructions": core['system_prompt'],
+        "conversation_starters": conversation_starters[:4],  # M365 limit
+        "capabilities": {
+            "web_search": {
+                "enabled": capabilities.get('can_browse_web', False)
+            },
+            "graph_connectors": {
+                "enabled": True,
+                "connections": []
+            }
+        },
+        "actions": []
+    }
+    
+    # Add metadata
+    if metadata.get('version') or metadata.get('author'):
+        declarative_agent["metadata"] = {
+            "version": metadata.get('version'),
+            "author": metadata.get('author'),
+            "tags": metadata.get('tags', [])
+        }
+    
+    return declarative_agent
+
 def convert_to_vscode_copilot(agent_config: Dict[str, Any]) -> str:
     """Convert agent config to VS Code Copilot Chat instructions format."""
     agent = agent_config['agent']
@@ -152,7 +208,7 @@ def convert_to_vscode_copilot(agent_config: Dict[str, Any]) -> str:
 def main():
     parser = argparse.ArgumentParser(description='Convert generic agent configs to platform-specific formats')
     parser.add_argument('input_file', help='Input agent configuration file (YAML or JSON)')
-    parser.add_argument('--platform', choices=['github-copilot', 'chatgpt', 'open-webui', 'vscode-copilot'], 
+    parser.add_argument('--platform', choices=['github-copilot', 'chatgpt', 'open-webui', 'vscode-copilot', 'm365-copilot'], 
                        required=True, help='Target platform')
     parser.add_argument('--output', help='Output file (optional)')
     
@@ -160,6 +216,7 @@ def main():
     
     try:
         agent_config = load_agent_config(args.input_file)
+        result = ""
         
         if args.platform == 'github-copilot':
             result = convert_to_github_copilot(agent_config)
@@ -173,6 +230,9 @@ def main():
             
         elif args.platform == 'vscode-copilot':
             result = convert_to_vscode_copilot(agent_config)
+            
+        elif args.platform == 'm365-copilot':
+            result = json.dumps(convert_to_m365_copilot(agent_config), indent=2)
         
         if args.output:
             with open(args.output, 'w') as f:

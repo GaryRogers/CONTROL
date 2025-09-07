@@ -116,6 +116,36 @@ This guide provides detailed instructions for deploying your generic agents to e
 - Ask workspace-specific questions
 - Verify file and project awareness
 
+## Microsoft 365 Copilot
+
+### Setup Process
+1. **Create Declarative Agent JSON**
+   - Convert your agent: `python tools/convert_agent.py your-agent.yaml --platform m365-copilot`
+   - Save as `declarativeAgent.json`
+
+2. **Deploy via Teams Admin Center**
+   - Package as Teams app (optional)
+   - Upload to Microsoft 365 Admin Center
+   - Configure permissions and scope
+
+3. **Alternative: SharePoint Deployment**
+   - Deploy to specific SharePoint sites
+   - Configure for document libraries
+   - Set up Graph connector permissions
+
+### M365 Integration Features
+- **Cross-Application**: Works in Teams, Outlook, Word, Excel, PowerPoint
+- **Microsoft Graph**: Access to user's M365 data
+- **Conversation Starters**: Pre-defined prompts guide interactions
+- **Adaptive Cards**: Rich response formatting
+- **Enterprise Security**: Built-in compliance and governance
+
+### Testing
+- Test in Teams chat
+- Try in Word/Excel integration
+- Verify conversation starters work
+- Check Microsoft Graph permissions
+
 ## Deployment Checklist
 
 ### Pre-Deployment

@@ -67,6 +67,18 @@
                   }
                 }
               ]
+            },
+            "m365_copilot": {
+              "allOf": [
+                { "$ref": "#/definitions/platformConfig" },
+                {
+                  "properties": {
+                    "conversation_starters": { "type": "array", "items": { "type": "string" } },
+                    "capabilities": { "type": "array", "items": { "type": "string" } },
+                    "actions": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              ]
             }
           }
         },

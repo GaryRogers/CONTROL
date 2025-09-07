@@ -20,7 +20,7 @@ generic-declarative-agent/
 │   ├── github-copilot.md
 │   ├── chatgpt.md
 │   ├── open-webui.md
-│   └── vscode-copilot-chat.md
+│   └── m365-copilot.md
 ├── schemas/               # Agent definition schemas
 │   ├── agent-schema.yaml
 │   └── agent-schema.json
@@ -105,7 +105,7 @@ Import the JSON configuration into your Open WebUI workspace.
 
 #### VS Code Copilot Chat
 ```bash
-python tools/convert_agent.py agents/my-custom-agent.yaml --platform vscode-copilot
+python tools/convert_agent.py agents/my-custom-agent.yaml --platform m365-copilot
 ```
 Add the output to your VS Code Copilot Chat instructions setting.
 
